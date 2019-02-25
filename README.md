@@ -1,4 +1,4 @@
-#  ## vue简单的搜索查询
+#  ### vue简单的搜索查询
 ```
 <!DOCTYPE html>
 <html>
@@ -58,15 +58,38 @@
 		},
 		methods:{
 			init(){
-				this.bodys=[{'names':'熊？璇','tel':'15243623738'},
-					{'names':'惠元','tel':'18569498484'},
-					{'names':'老姨','tel':'13963317597'},
+				this.bodys=[{'names':'熊**','tel':'15243623738'},
+					{'names':'惠**','tel':'18569498484'},
+					{'names':'老**','tel':'1396339597'},
 					{'names':'电信安装','tel':'13348617628'},
-					{'names':'左建维','tel':'18390807665'},
-					{'names':'周建琳','tel':'1828019409'}]
+					{'names':'左**','tel':'18390807665'},
+					{'names':'周**','tel':'1828019409'}]
 			}
 		}
 	})
 </script>
 </html>
 ```
+
+### vue地址栏参数获取
+```
+console.log(this.$route.query)
+```
+
+### 路由传参
+```
+/loanreview/:id  //router.js路径
+
+<router-link  :to="'/loanreview/'+items.Id"></router-link>
+```
+### 跳转参数
+```
+meta: {  
+            aid:'',          
+            requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的        
+            }
+	    
+this.$router.push({name:'authercard',params:{aid:this.authercore.PeopleIdcardLiveState}})
+console.log(this.$route.params.aid);	//authercard.vue    
+```
+
