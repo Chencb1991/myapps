@@ -1,4 +1,38 @@
 
+### vue_cli3 vue.config.js
+```
+module.exports ={
+	baseUrl: process.env.NODE_ENV === "production" ? "./" : "/",
+	outputDir: "../www",//打包目录
+	assetsDir: "./", //静态路径
+	indexPath: "../www/index.html"//指定生成的 index.html 的输出路径,
+	chainWebpack: config => {
+    	config.module
+      		.rule('images')
+        	.use('url-loader')
+         	 .loader('url-loader')
+          	.tap(options => Object.assign(options, { limit: 1000240 }))
+  	},//base64位图片生成限制大小
+	devServer:{
+		host: "http://47.98.155.157",//服务器测试环境
+		proxy:{
+		 '/api': {
+      //           //target: 'http://192.168.0.222:9999/portal_app',
+      //           target: 'http://47.98.155.157:9999/portal_app',
+      //           changeOrigin: true,
+      //           ws: true,
+      //           pathRewrite: {
+      //             //'^/api': ''
+      //             '^/api': '/'
+      //           }
+      //       }
+		}
+	}
+}
+```
+
+
+
 ### vue简单搜索
 ```
 <!DOCTYPE html>
