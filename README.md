@@ -94,3 +94,36 @@ this.$router.push({name:'authercard',params:{aid:this.authercore.PeopleIdcardLiv
 console.log(this.$route.params.aid);	//authercard.vue    
 ```
 
+### vue创建自定义js文件
+```
+export default {
+  install (Vue, options) {
+  	// 头部封装
+    Vue.prototype.createHeader = function (loginUserId, requestType) {
+        var header = new Object;
+        header.requestType = requestType, 
+        header.loginUserId = loginUserId,
+        header.macNo = "XX-XX-XX-XX-XX-XX", 
+        header.appVersionCode = "1",
+        header.appLang = "1", 
+        header.appChannel = "1",
+        header.appDeviceType = "3",
+        header.businessAppId="1"
+        return header;
+    },
+  //服务器接口
+    Vue.prototype.creathosturl = function () {
+        var hosturl = new Object;
+        hosturl.host="http://47.98.155.157:8888/portal_app"
+        //hosturl.host="http://192.168.0.211:8888/portal_app"
+        return hosturl;
+    }
+  }
+ }
+ 
+ 
+//main.js引入：
+import utils from './vue.header'
+Vue.use(utils);
+```
+
