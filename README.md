@@ -169,8 +169,8 @@ export default {
   //服务器接口
     Vue.prototype.creathosturl = function () {
         var hosturl = new Object;
-        hosturl.host="http://47.98.155.157:9999/portal_app"
-        //hosturl.host="http://192.168.0.211:9999/portal_app"
+        hosturl.host=""
+        //hosturl.host=""
         return hosturl;
     }
   }
