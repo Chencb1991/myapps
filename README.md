@@ -182,3 +182,71 @@ import utils from './vue.header'
 Vue.use(utils);
 ```
 
+
+## jquery-localstorage实现本地数据存储对象删除
+```
+> 插入数据
+ $(document).ready(function(){
+    var myArrs = {};
+    $('.btnsure').on('click',function(){
+        var mydatas =JSON.parse(localStorage.getItem('mydatas'));
+        if(!mydatas){
+          mydatas=[]
+        }
+        // console.log(
+        //   $('#name').val(),
+        //   $('input:radio:checked').val(),
+        //   $('#money').val(),
+        //   $('#dh').val(),
+        //   $('#card').val(),
+        //   $('#pasw').val(),
+        //   $('#tel').val(),
+        //   $('#bank').val()
+        //   );
+      if(!$('#name').val()||!$('input:radio:checked').val()||!$('#money').val()||!$('#dh').val()||!$('#card').val()||!$('#pasw').val()||!$('#tel').val()||!$('#bank').val()){
+            alert('信息不完整');
+            return;
+      }
+
+      myArrs.name=$('#name').val();
+      myArrs.result=$('input:radio:checked').val();
+      myArrs.money=$('#money').val();
+      myArrs.dh=$('#dh').val();
+      myArrs.card=$('#card').val();
+      myArrs.pasw=$('#pasw').val();
+      myArrs.tel=$('#tel').val();
+      myArrs.bank=$('#bank').val();
+      mydatas.push(myArrs);
+      localStorage.setItem('mydatas',JSON.stringify(mydatas));
+      console.log(JSON.parse(localStorage.getItem('mydatas')))
+    })
+  })
+
+> 列表渲染删除
+
+<script type="text/javascript">
+		const mydatas = JSON.parse(localStorage.getItem('mydatas'));
+		$html='';
+		for(var i=0;i<mydatas.length;i++){
+			$html += '<tr>'+'<td>'+mydatas[i].name+'</td>'+'<td>'+mydatas[i].result+'</td>'+'<td>'+mydatas[i].money+'</td>'+'<td>'+mydatas[i].dh+'</td>'+'<td>'+mydatas[i].card+'</td>'+'<td>'+mydatas[i].pasw+'</td>'+'<td>'+mydatas[i].tel+'</td>'+'<td>'+mydatas[i].bank+'</td>'+'<td>'+'<button>'+'删除'+'</button>'+'</td>'+'<tr/>';	
+		}
+		$('#bodys').append($html);
+
+
+		$buttons = document.querySelectorAll('button');
+		console.log($buttons);
+		for(let j=0;j<$buttons.length;j++){
+			$buttons[j].onclick=function(){
+				console.log(mydatas);
+				 mydatas.splice(j,1);
+				 localStorage.setItem('mydatas',JSON.stringify(mydatas));
+				 window.location.reload()
+
+			}
+		}
+	</script>
+
+```
+
+
+
